@@ -1,0 +1,14 @@
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+
+
+app.use(cors());
+app.use(express.json());
+
+app.get('/ping', (req, res) => {
+  res.json({ message: 'pong', status: 'Servidor operativo' });
+});
+
+module.exports = app;
