@@ -41,4 +41,91 @@ La arquitectura está modularizada de la siguiente manera:
 ├── index.js               # Punto de entrada de la aplicación (Inicio del servidor)
 └── README.md
 
-Realizado por Camila Domato. Para UTN.
+🚀 Instalación y Ejecución
+Sigue estos pasos para clonar de forma local y ejecutar el proyecto:
+
+1. Clonar el repositorio e instalar dependencias
+Bash
+git clone <URL_DE_TU_REPOSITORIO>
+cd utn-backend-mvc-mongodb
+npm install
+2. Configurar variables de entorno
+Crea un archivo .env en la raíz del proyecto tomando como referencia el archivo .env.example:
+
+Fragmento de código
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/utn_tasks_db
+JWT_SECRET=TuPalabraSecretaSuperSegura123!
+NODE_ENV=development
+3. Ejecutar el servidor
+Para entorno de Desarrollo (con reinicio automático mediante nodemon):
+
+Bash
+npm run dev
+Para entorno de Producción:
+
+Bash
+npm start
+🔌 Detalle de Endpoints (API Reference)
+🔓 Autenticación (Públicos)
+POST /api/auth/register
+Descripción: Crea una nueva cuenta de usuario y retorna sus datos junto con el token de acceso.
+
+Cuerpo de la petición (JSON):
+
+JSON
+{
+  "name": "Camila",
+  "email": "camila@example.com",
+  "password": "password123"
+}
+POST /api/auth/login
+Descripción: Valida las credenciales del usuario y retorna el token JWT necesario para las rutas protegidas.
+
+Cuerpo de la petición (JSON):
+
+JSON
+{
+  "email": "camila@example.com",
+  "password": "password123"
+}
+🔒 Entidad Protegida: Tareas (Privados)
+⚠️ Requisito: Todas las siguientes peticiones requieren incluir el header:
+
+Authorization: Bearer <TU_TOKEN_JWT>
+
+GET /api/tasks
+Descripción: Retorna una lista con únicamente las tareas que pertenezcan al usuario autenticado.
+
+POST /api/tasks
+Descripción: Crea una nueva tarea asociada automáticamente al ID del usuario que realiza la petición.
+
+Cuerpo de la petición (JSON):
+
+JSON
+{
+  "title": "Estudiar para el parcial de Backend",
+  "description": "Repasar controladores, rutas e integración con Mongoose"
+}
+PATCH /api/tasks/:id
+Descripción: Modifica los campos de una tarea específica, siempre y cuando pertenezca al usuario autenticado.
+
+Cuerpo de la petición (JSON parcial):
+
+JSON
+{
+  "completed": true
+}
+DELETE /api/tasks/:id
+Descripción: Elimina definitivamente una tarea si el ID provisto pertenece al catálogo del usuario logueado.
+
+🧪 Pruebas con Postman / Thunder Client
+Para testear la API de forma ágil:
+
+Importa una nueva colección en tu cliente de pruebas (Postman/Thunder Client).
+
+Ejecuta el endpoint de Register o Login.
+
+Copia el string del campo token que viene en la respuesta.
+
+En las solicitudes de la entidad Tasks, dirígete a la pestaña de Auth, selecciona Bearer Token y pega el código copiado.
