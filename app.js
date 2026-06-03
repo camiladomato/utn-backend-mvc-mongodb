@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 
-// Importar las rutas
 const authRoutes = require('./routes/auth.routes');
 const taskRoutes = require('./routes/task.routes');
 
@@ -12,8 +11,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/ping', (req, res) => {
-  res.json({ message: 'pong', status: 'Servidor operativo' });
+
+app.get('/api', (req, res) => {
+  res.status(200).json({
+    name: 'UTN Task Manager API',
+    version: '1.0.0',
+    description: 'Servidor backend con arquitectura MVC y autenticación JWT',
+  });
 });
 
 app.use('/api/auth', authRoutes);
