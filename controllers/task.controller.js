@@ -1,6 +1,6 @@
 const Task = require('../models/Task');
 
-// GET /api/tasks (Lista solo las tareas del usuario logueado)
+
 const getTasks = async (req, res, next) => {
   try {
     const tasks = await Task.find({ user: req.user.id });
@@ -14,7 +14,7 @@ const getTasks = async (req, res, next) => {
   }
 };
 
-// POST /api/tasks (Crea una nueva tarea vinculada al usuario)
+
 const createTask = async (req, res, next) => {
   try {
     const { title, description } = req.body;
@@ -27,7 +27,7 @@ const createTask = async (req, res, next) => {
     const newTask = await Task.create({
       title,
       description,
-      user: req.user.id // Vinculación clave
+      user: req.user.id 
     });
 
     res.status(201).json({
@@ -39,16 +39,16 @@ const createTask = async (req, res, next) => {
   }
 };
 
-// PATCH /api/tasks/:id (Modifica una tarea si le pertenece al usuario)
+
 const updateTask = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    // Buscamos por el ID de la tarea Y el ID del usuario autenticado
+    
     const task = await Task.findOneAndUpdate(
       { _id: id, user: req.user.id },
       req.body,
-      { new: true, runValidators: true } // new: true devuelve el objeto ya modificado
+      { new: true, runValidators: true } 
     );
 
     if (!task) {
@@ -65,7 +65,7 @@ const updateTask = async (req, res, next) => {
   }
 };
 
-// DELETE /api/tasks/:id (Elimina una tarea si le pertenece al usuario)
+
 const deleteTask = async (req, res, next) => {
   try {
     const { id } = req.params;
