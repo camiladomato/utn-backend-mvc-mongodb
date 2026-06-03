@@ -1,8 +1,18 @@
+
+const { webcrypto } = require('crypto');
+if (webcrypto && !globalThis.crypto) {
+  globalThis.crypto = webcrypto;
+} else if (webcrypto && globalThis.crypto && !globalThis.crypto.getRandomValues) {
+  globalThis.crypto.getRandomValues = webcrypto.getRandomValues.bind(webcrypto);
+}
+
+
 const app = require('./app');
 const connectDB = require('./config/db');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 5000;
+
 
 connectDB().then(() => {
   app.listen(PORT, () => {

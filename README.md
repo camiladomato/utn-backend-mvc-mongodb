@@ -50,13 +50,14 @@ git clone <URL_DE_TU_REPOSITORIO>
 cd utn-backend-mvc-mongodb
 npm install
 2. Configurar variables de entorno
-Crea un archivo .env en la raíz del proyecto tomando como referencia el archivo .env.example:
+Crea un archivo `.env` en la raíz del proyecto tomando como referencia el archivo `.env.example`:
 
-Fragmento de código
+```env
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/utn_tasks_db
+MONGO_URI=mongodb+srv://camila_utn:<password>@cluster0.xxxx.mongodb.net/utn_tasks_db?retryWrites=true&w=majority
 JWT_SECRET=TuPalabraSecretaSuperSegura123!
 NODE_ENV=development
+
 3. Ejecutar el servidor
 Para entorno de Desarrollo (con reinicio automático mediante nodemon):
 
