@@ -3,7 +3,13 @@
 Este proyecto es una API REST desarrollada con **Node.js** y **Express** para la gestión de tareas (Tasks). Implementa una arquitectura **MVC (Modelo-Vista-Controlador)**, persistencia de datos en **MongoDB** a través de Mongoose, encriptación de contraseñas con **bcryptjs**, y protección de rutas mediante tokens **JWT (JSON Web Tokens)**.
 
 Proyecto desarrollado para el Trabajo Práctico de la **Universidad Tecnológica Nacional (UTN)**.
+---
 
+## 🌐 Deploy en Vivo
+El proyecto se encuentra desplegado y operativo en la nube. Puedes acceder a la API a través del siguiente enlace:
+🔗 **URL del Deploy:** [https://utn-backend-mvc-mongodb.onrender.com](https://utn-backend-mvc-mongodb.onrender.com)
+
+---
 ---
 
 ## 🛠️ Tecnologías Utilizadas
