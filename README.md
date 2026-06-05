@@ -1,15 +1,16 @@
+Markdown
 # Servidor Backend Express + MongoDB (Arquitectura MVC)
 
 Este proyecto es una API REST desarrollada con **Node.js** y **Express** para la gestión de tareas (Tasks). Implementa una arquitectura **MVC (Modelo-Vista-Controlador)**, persistencia de datos en **MongoDB** a través de Mongoose, encriptación de contraseñas con **bcryptjs**, y protección de rutas mediante tokens **JWT (JSON Web Tokens)**.
 
 Proyecto desarrollado para el Trabajo Práctico de la **Universidad Tecnológica Nacional (UTN)**.
+
 ---
 
 ## 🌐 Deploy en Vivo
 El proyecto se encuentra desplegado y operativo en la nube. Puedes acceder a la API a través del siguiente enlace:
 🔗 **URL del Deploy:** [https://utn-backend-mvc-mongodb.onrender.com](https://utn-backend-mvc-mongodb.onrender.com)
 
----
 ---
 
 ## 🛠️ Tecnologías Utilizadas
@@ -46,60 +47,65 @@ La arquitectura está modularizada de la siguiente manera:
 ├── app.js                 # Configuración central de Express y middlewares globales
 ├── index.js               # Punto de entrada de la aplicación (Inicio del servidor)
 └── README.md
-
-🚀 Instalación y Ejecución
-Sigue estos pasos para clonar de forma local y ejecutar el proyecto:
+```
+### 🚀 Instalación y Ejecución
+**Sigue estos pasos para clonar de forma local y ejecutar el proyecto:**
 
 1. Clonar el repositorio e instalar dependencias
+```
 Bash
 git clone <URL_DE_TU_REPOSITORIO>
 cd utn-backend-mvc-mongodb
 npm install
+```
 2. Configurar variables de entorno
-Crea un archivo `.env` en la raíz del proyecto tomando como referencia el archivo `.env.example`:
+Crea un archivo .env en la raíz del proyecto tomando como referencia el archivo .env.example:
 
-```env
+Fragmento de código
+```
 PORT=5000
 MONGO_URI=mongodb+srv://camila_utn:<password>@cluster0.xxxx.mongodb.net/utn_tasks_db?retryWrites=true&w=majority
 JWT_SECRET=TuPalabraSecretaSuperSegura123!
 NODE_ENV=development
-
+```
 3. Ejecutar el servidor
 Para entorno de Desarrollo (con reinicio automático mediante nodemon):
-
+```
 Bash
 npm run dev
+```
 Para entorno de Producción:
-
+```
 Bash
 npm start
-🔌 Detalle de Endpoints (API Reference)
-🔓 Autenticación (Públicos)
+```
+#### 🔌 Detalle de Endpoints (API Reference)
+##### **🔓 Autenticación (Públicos)**
 POST /api/auth/register
 Descripción: Crea una nueva cuenta de usuario y retorna sus datos junto con el token de acceso.
 
 Cuerpo de la petición (JSON):
-
+```
 JSON
 {
   "name": "Camila",
   "email": "camila@example.com",
   "password": "password123"
 }
+```
 POST /api/auth/login
 Descripción: Valida las credenciales del usuario y retorna el token JWT necesario para las rutas protegidas.
 
 Cuerpo de la petición (JSON):
-
+```
 JSON
 {
   "email": "camila@example.com",
   "password": "password123"
 }
-🔒 Entidad Protegida: Tareas (Privados)
-⚠️ Requisito: Todas las siguientes peticiones requieren incluir el header:
-
-Authorization: Bearer <TU_TOKEN_JWT>
+```
+#### ### 🔒 Entidad Protegida: Tareas (Privados)
+**⚠️ REQUISITO: TODAS LAS SIGUIENTES PETICIONES REQUIEREN INCLUIR EL HEADER: AUTHORIZATION: BEARER <TU_TOKEN_JWT>**
 
 GET /api/tasks
 Descripción: Retorna una lista con únicamente las tareas que pertenezcan al usuario autenticado.
@@ -108,25 +114,27 @@ POST /api/tasks
 Descripción: Crea una nueva tarea asociada automáticamente al ID del usuario que realiza la petición.
 
 Cuerpo de la petición (JSON):
-
+```
 JSON
 {
   "title": "Estudiar para el parcial de Backend",
   "description": "Repasar controladores, rutas e integración con Mongoose"
 }
+```
 PATCH /api/tasks/:id
 Descripción: Modifica los campos de una tarea específica, siempre y cuando pertenezca al usuario autenticado.
 
 Cuerpo de la petición (JSON parcial):
-
+```
 JSON
 {
   "completed": true
 }
+```
 DELETE /api/tasks/:id
 Descripción: Elimina definitivamente una tarea si el ID provisto pertenece al catálogo del usuario logueado.
 
-🧪 Pruebas con Postman / Thunder Client
+### **🧪 Pruebas con Postman / Thunder Client**
 Para testear la API de forma ágil:
 
 Importa una nueva colección en tu cliente de pruebas (Postman/Thunder Client).
